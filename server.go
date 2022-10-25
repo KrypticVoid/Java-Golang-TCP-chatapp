@@ -41,15 +41,13 @@ func main() {
 	fmt.Println("Server Running...")
 }
 func connect(host string, port string){
-	PORT        = port
-	SERVER_ADDR = host
-	server, err := net.Listen(SERVER_TYPE, SERVER_ADDR+":"+PORT)
+	server, err := net.Listen(SERVER_TYPE, host+":"+port)
 	if err != nil {
 		fmt.Println(time.Now().Format(time.Stamp)+": Error listening:", err.Error())
 		os.Exit(1)
 	}
 	defer server.Close()
-	fmt.Println(time.Now().Format(time.Stamp) + ": Listening on " + SERVER_ADDR + ":" + PORT)
+	fmt.Println(time.Now().Format(time.Stamp) + ": Listening on " + host + ":" + port)
 	fmt.Println(time.Now().Format(time.Stamp) + ": Waiting for client...")
 
 	for {
